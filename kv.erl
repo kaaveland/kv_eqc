@@ -47,7 +47,7 @@ lookup(Key, {node, Left, NodeKey, NodeValue, Right}) ->
      Key == NodeKey ->
       {Key, NodeValue};
      Key > NodeKey ->
-      lookup(Key, Left)
+      lookup(Key, Right)
   end.
 
 %% State machine
