@@ -29,13 +29,13 @@ server(T) ->
   end.
 
 insert(Key, Value, leaf) ->
-  {node, leaf, K, V, leaf};
+  {node, leaf, Key, Value, leaf};
 insert(Key, Value, {node, Left, NodeKey, _NodeValue, Right}) ->
   if Key < NodeKey ->
       insert(Key, Value, Left);
      Key == NodeKey ->
       {node, Left, Key, Value, Right};
-     K > KN ->
+     Key > NodeKey ->
       insert(Key, Value, Right)
   end.
 
