@@ -30,13 +30,13 @@ server(T) ->
 
 insert(Key, Value, leaf) ->
   {node, leaf, Key, Value, leaf};
-insert(Key, Value, {node, Left, NodeKey, _NodeValue, Right}) ->
+insert(Key, Value, {node, Left, NodeKey, NodeValue, Right}) ->
   if Key < NodeKey ->
-      insert(Key, Value, Left);
+      {node, insert(Key, Value, Left), NodeKey, NodeValue, Right};
      Key == NodeKey ->
       {node, Left, Key, Value, Right};
      Key > NodeKey ->
-      insert(Key, Value, Right)
+      {node, Left, NodeKey, NodeValue, insert(Key, Value, Right)}
   end.
 
 lookup(_, leaf) ->
